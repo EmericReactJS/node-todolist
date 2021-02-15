@@ -1,0 +1,24 @@
+.app {
+	margin: 0 200px;
+}
+
+.header {
+	text-align: center;
+}
+
+.user-todos {
+	background-color: gainsboro;
+	padding: 10px;
+	border-radius: 15px;
+}
+
+.todo {
+	margin: 8px 0;
+}
+
+.form {
+	float: right;
+}
+.footer {
+	text-align: center;
+}

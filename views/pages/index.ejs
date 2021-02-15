@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../partials/head'); %>
+  </head>
+  <body>
+    <div class="app">
+      <header class="header"><%- include('../partials/header'); %></header>
+      <section class="user-todos">
+        <h2><%= userName %>&#39;s List</h2>
+        <ul>
+          <% todos.map((todo) => { %>
+          <li class="todo">
+            <%= todo.name %>
+            <form class="form
+						" action="/delete/<%= todo.id %>" method="post" >
+              <button type="submit" value="<%- todo.id %>">
+                Done
+              </button>
+            </form>
+          </li>
+          <% }) %>
+        </ul>
+      </section>
+			<section>
+				<form action="/create" method="post">
+					<input type="text" name="name">
+					<button type="submit">add</button>
+				</form>
+			</section>
+      <footer class="footer"><%- include('../partials/footer'); %></footer>
+    </div>
+  </body>
+</html>
