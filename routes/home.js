@@ -1,13 +1,16 @@
-import express from 'express';
 import { todos, userName } from '../todos.js';
 
-const router = express.Router();
+const homeRouteHandler = (router, db) => {
+  return router.get('/', async (request, response) => {
+    const todosCollection = db.collection('todos');
+    const cursor = todosCollection.find({});
+    const todos = await cursor.toArray();
 
-router.get('/', (request, response) => {
-  response.render('../views/pages/index', {
-    userName,
-    todos
+    response.render('../views/pages/index', {
+      userName,
+      todos
+    });
   });
-});
+};
 
-export default router;
+export { homeRouteHandler };
