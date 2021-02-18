@@ -11,8 +11,18 @@ let db;
 
 client
   .connect()
-  .then((client) => db = client.db(process.env.MONGODB_DB_NAME))
+  .then((client) => (db = client.db(process.env.MONGODB_DB_NAME)))
   .catch((err) => console.log('connection error:', err));
+
+const findOne = async (collection, id) => {
+  try {
+    const _id = new mongodb.ObjectID(id);
+    const document = await db.collection(collection).findOne({ _id: _id });
+    return document;
+  } catch (err) {
+    console.log(err.stack);
+  }
+};
 
 const findAll = async (collection) => {
   try {
@@ -23,10 +33,10 @@ const findAll = async (collection) => {
   }
 };
 
-const create = async (collection, body) => {
+const create = async (collection, doc) => {
   try {
     const col = db.collection(collection);
-    await col.insertOne(body);
+    await col.insertOne(doc);
   } catch (err) {
     console.log(err.stack);
   }
@@ -41,4 +51,4 @@ const del = async (collection, id) => {
   }
 };
 
-export { findAll, create, del };
+export { findOne, findAll, create, del };
