@@ -13,8 +13,8 @@
           <li class="todo">
             <%= todo.name %>
             <form class="form
-						" action="/delete/<%= todo.id %>" method="post" >
-              <button type="submit" value="<%- todo.id %>">
+						" action="/delete/<%= todo._id %>" method="post" >
+              <button type="submit" value="<%- todo._id %>">
                 Done
               </button>
             </form>
