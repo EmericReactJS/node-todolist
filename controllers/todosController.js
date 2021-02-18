@@ -1,4 +1,4 @@
-import { findAll, create, del } from '../mongodb.js';
+import { findOne, findAll, create, del } from '../mongodb.js';
 // collection and userName hard coded
 
 const todoList = async (request, response) => {
