@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../partials/head'); %>
+  </head>
+  <body>
+    <div class="app">
+      <header class="header"><%- include('../partials/header'); %></header>
+      <section class="user-login">
+				<h2>Sign up Page</h2>
+				<form action="/auth/signup" method="post">
+				<label for="name">name</label>
+				<input type="text" id="name" name="name">
+				<label for="password">password</label>
+				<input type="password" id="password" name="password">
+				<button type="submit">sign up</button>
+			</form>
+			</section>
+      <footer class="footer"><%- include('../partials/footer'); %></footer>
+    </div>
+  </body>
+</html>

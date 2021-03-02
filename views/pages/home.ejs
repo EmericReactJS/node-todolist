@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../partials/head'); %>
+  </head>
+  <body>
+    <div class="app">
+      <header class="header"><%- include('../partials/header'); %></header>
+			<% if (authorizedUser) { %>
+				<section>
+					<a href="/todos/list">My todos</a>
+				</section>
+			<% } else { %>
+      <section class="user-login">
+				<h2>Welcome to Node TodoList app</h2>
+				<form action="/auth/login" method="post">
+          <label for="name">name</label>
+          <input type="text" id="name" name="name" />
+          <label for="password">password</label>
+          <input type="password" id="password" name="password" />
+          <button type="submit">Log me in</button>
+        </form>
+				<a href="/auth/register">sign up</a>
+			</section>
+			<% } %>
+      <footer class="footer"><%- include('../partials/footer'); %></footer>
+    </div>
+  </body>
+</html>

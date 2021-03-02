@@ -14,41 +14,54 @@ client
   .then((client) => (db = client.db(process.env.MONGODB_DB_NAME)))
   .catch((err) => console.log('connection error:', err));
 
-const findOne = async (collection, id) => {
+const findOne = async (collection, query) => {
   try {
-    const _id = new mongodb.ObjectID(id);
-    const document = await db.collection(collection).findOne({ _id: _id });
+    const document = await db.collection(collection).findOne(query);
     return document;
   } catch (err) {
     console.log(err.stack);
   }
 };
 
-const findAll = async (collection) => {
+const findAll = async (collection, query) => {
   try {
-    const documents = await db.collection(collection).find({}).toArray();
+    const documents = await db
+      .collection(collection)
+      .findOne(query, { projection: { todos: 1 } });
     return documents;
   } catch (err) {
     console.log(err.stack);
   }
 };
 
-const create = async (collection, doc) => {
+const insertOne = async (collection, doc) => {
   try {
     const col = db.collection(collection);
-    await col.insertOne(doc);
+    const result = await col.insertOne(doc);
+    return result.ops[0];
   } catch (err) {
     console.log(err.stack);
   }
 };
 
-const del = async (collection, id) => {
+const update = async (collection, query, doc) => {
   try {
-    const _id = new mongodb.ObjectID(id);
-    await db.collection(collection).deleteOne({ _id: _id });
+    const col = db.collection(collection);
+    const result = await col.updateOne(query, { $push: doc });
+    return result;
   } catch (err) {
     console.log(err.stack);
   }
 };
 
-export { findOne, findAll, create, del };
+const deleteOne = async (collection, query, doc) => {
+  try {
+    const col = db.collection(collection);
+    const result = await col.updateOne(query, { $pull: { todos: doc } });
+    return result;
+  } catch (err) {
+    console.log(err.stack);
+  }
+};
+
+export { findOne, findAll, insertOne, update, deleteOne };
