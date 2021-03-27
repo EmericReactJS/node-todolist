@@ -13,8 +13,8 @@
           <li class="todo">
             <%= todo.name %>
             <form class="form
-						" action="/delete/<%= todo._id %>" method="post" >
-              <button type="submit" value="<%- todo._id %>">
+						" action="/todos/delete/<%= todo.name %>" method="post" >
+              <button type="submit" value="<%- todo.name %>">
                 Done
               </button>
             </form>
@@ -23,7 +23,7 @@
         </ul>
       </section>
 			<section>
-				<form action="/create" method="post">
+				<form action="/todos/create" method="post">
 					<input type="text" name="name">
 					<button type="submit">add</button>
 				</form>
