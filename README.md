@@ -1,4 +1,5 @@
-# Todolist with login/signup/session management and database, with focus on minimizing use of frameworks/libraries
+# Todolist: 
+login/signup/session management and database, with focus on minimizing use of frameworks/libraries
 and implementing an MVC design pattern.
 
 ___
