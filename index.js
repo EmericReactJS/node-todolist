@@ -22,7 +22,7 @@ app.use(express.static('./views/partials'));
 app.use(express.urlencoded({ extended: false }));
 app.use(
   session({
-    secret: 'supersecret',
+    secret: process.env.EXPRESS_SESSION_SECRET,
     store: MongoStore.create({
       client,
       dbName: process.env.MONGODB_DB_NAME,
