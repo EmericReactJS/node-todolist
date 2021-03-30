@@ -1,4 +1,4 @@
-import { findOne, insertOne } from '../mongodb.js';
+import { findOne, insertOne } from '../store/storeApi.js';
 
 export async function signup(request, response) {
   const newUser = {

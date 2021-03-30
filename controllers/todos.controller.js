@@ -1,4 +1,4 @@
-import { findAll, update, deleteOne } from '../mongodb.js';
+import { findAll, update, deleteOne } from '../store/storeApi.js';
 
 export async function get(request, response) {
   const userName = request.session.user.name;
