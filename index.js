@@ -18,6 +18,8 @@ app.use(
     saveUninitialized: false
   })
 );
+app.disable('x-powered-by');
+
 app.use('/auth', authRouter);
 app.use('/todos', authorize, todosRouter);
 app.get('/', (request, response) => {
